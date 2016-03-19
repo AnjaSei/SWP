@@ -8,7 +8,7 @@
 library(affy)
 library(hgu133plus2cdf)       #load package containing an environment representing the HG-U133_Plus_2.cdf file
 library(hgu133plus2.db)       #fuer Genannotation
-library(simpleaffy)           #fuer Qualitaetsanalyse
+library(simpleaffy)           #fuer QC-Plot
 
 ##1. Lese .CEL-Files
 data<- ReadAffy(celfile.path = "/home/anja/Dokumente/Studium/6.Semester/Projektmanagement_im_Softwarebereich/Gruppe_1/input/ND_Group1_133Plus_2")
@@ -24,7 +24,6 @@ write.exprs(rma_data, file="/home/anja/Dokumente/Studium/6.Semester/Projektmanag
 
 ##Ueberpruefe Normalisierung mit:
 ##3a) Boxplots
-#Boxplots of log-intensity distribution are plotted for between-array comparison. The distributions of raw PM (perfect match probes) log-intensities are not expected to be identical but still not totally different while the distributions of normalized (and summarized) probe-set log-intensities are expected to be more comparable if not identical (some normalization methods make the distributions even). Drawing these boxplots before and after normalization allows also checking the normalization step.
 jpeg(filename="/home/anja/Dokumente/Studium/6.Semester/Projektmanagement_im_Softwarebereich/Gruppe_1/output/boxplots.jpeg", width=800, height=800, quality=100)
 par(mfrow=c(1,2))
 boxplot(data)
@@ -33,11 +32,9 @@ dev.off()
 
 ##3b) Density diagrams
 #Vergleich raw data und normalisierter Daten
-#Density plots of log-intensity distribution of each array are superposed on a single graph for a better comparison between arrays and for an identification of arrays with weird distribution. As for the boxplots, the density distributions of raw PM (perfect match probes) log-intensities are not expected to be identical but still not totally different while the distributions of normalized probe-set log-intensities are expected to be more. Drawing these plots before and after normalization allows also checking the normalization step.
 jpeg(filename="/home/anja/Dokumente/Studium/6.Semester/Projektmanagement_im_Softwarebereich/Gruppe_1/output/histogramme_raw_vs_normalisiert.jpeg", width=800, height=600, quality=100)
 par(mfrow=c(1,2))
 hist(data, col=1:9, lty=1)   #density plots of log intensities (AffyBatch). 
-#plotDensity.AffyBatch(data, col=1:9, lty=1, which=c("both"))  #==plot(density(log2(exprs(data))))
 legend("topright", sampleNames(data), col=1:9, lty=rep(1,9), cex=0.7)
 plotDensity(exprs(rma_data), lty=1, col =1:9)
 legend("topright", sampleNames(data), col=1:9, lty=rep(1,9), cex=0.7)
@@ -81,7 +78,6 @@ qc_data<-qc(data)
 plot(qc_data)
 dev.off()
 
-##MA-Plot?
 
 
 
