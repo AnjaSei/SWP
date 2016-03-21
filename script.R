@@ -26,8 +26,8 @@ write.exprs(rma_data, file="/home/anja/Dokumente/Studium/6.Semester/Projektmanag
 ##3a) Boxplots
 jpeg(filename="/home/anja/Dokumente/Studium/6.Semester/Projektmanagement_im_Softwarebereich/Gruppe_1/output/boxplots.jpeg", width=800, height=800, quality=100)
 par(mfrow=c(1,2))
-boxplot(data)
-boxplot(exprs(rma_data))
+boxplot(data, main="raw data", cex.axis=0.3, las=2)
+boxplot(exprs(rma_data), main="RMA normalisierte Daten", cex.axis=0.3, las=2)
 dev.off()
 
 ##3b) Density diagrams
@@ -52,8 +52,8 @@ for (i in 1:length(data)){
 ##5. Histogramme
 jpeg(filename="/home/anja/Dokumente/Studium/6.Semester/Projektmanagement_im_Softwarebereich/Gruppe_1/output/histogramme.jpeg", width=800, height=600, quality=100)
 par(mfrow=c(1,2))
-hist(exprs(rma_data))
-hist(log2(mm(data)))
+hist(log2(exprs(data)), main="Signalintensitaet raw data")
+hist(exprs(rma_data), main="Signalintensitaet RMA-normalisierte Daten")
 dev.off()
 
 #betrachte Signalverteilung pm, mm und alle
@@ -69,7 +69,7 @@ jpeg(filename="/home/anja/Dokumente/Studium/6.Semester/Projektmanagement_im_Soft
 deg_data<-AffyRNAdeg(data)
 plotAffyRNAdeg(deg_data, col=1:9)
 legend("topleft", sampleNames(data), col=1:9, lty=rep(1,9), cex=1)
-summaryAffyRNAdeg(deg_data)   #slope<5 -> gut
+#summaryAffyRNAdeg(deg_data)   #slope<5 -> gut
 dev.off()
 
 ##7. QC-Plot
