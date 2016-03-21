@@ -29,7 +29,6 @@ Ausfuehren in der Kommandozeile:
 
 Installiere, wenn noch nicht vorhanden, die folgenden packages mit Bioconducter:
 source("http://bioconductor.org/biocLite.R")
-Bioconductor downloads and installs the package
 biocLite("affy")
 biocLite("hgu133plus2cdf")
 biocLite("hgu133plus2.db")
