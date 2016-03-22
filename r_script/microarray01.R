@@ -63,7 +63,7 @@ dev.off()
 
 ##4. Microarraybilder
 for (i in 1:length(data)){
-  jpeg(filename=paste0(args[2],"/array",i,".jpeg"), width=2000, height=2000, quality=100)
+  jpeg(filename=paste0(args[2],"/",sampleNames(data)[i],".jpeg"), width=2000, height=2000, quality=100)
   image(data[,i])
   dev.off()
 }
