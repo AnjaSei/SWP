@@ -1,8 +1,8 @@
 
 ###1. File list
 
-* microarray01.R        enthaelt den Quellcode
-* CEL_Files/            Ordner, der die zu analysierenden .CEL Files enthaelt  
+* microarray01.R	enthaelt den Quellcode
+* CEL_Files/	Ordner, der die zu analysierenden .CEL Files enthaelt  
 
 ###2. Ausfuehren
 
