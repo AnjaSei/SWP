@@ -9,8 +9,8 @@
 Speichere den R-Code in einem Verzeichnis deiner Wahl und wechsle in der Kommandozeile zu diesem Verzeichnis.
 
 Der R-Code laesst sich in zwei verschiedenen Modi ausfuehren:
-Mit einem Parameter: ..* Parameter 1 gibt das Verzeichnis an, das die .CEL Files beeinhaltet.
-                     ..*Zum Speichern der Ergebnisse wird im aktuellen Arbeitsverzeichnis der Ordner "output/" angelegt.
+Mit einem Parameter:	..* Parameter 1 gibt das Verzeichnis an, das die .CEL Files beeinhaltet.
+                     	..*Zum Speichern der Ergebnisse wird im aktuellen Arbeitsverzeichnis der Ordner "output/" angelegt.
 Ausfuehren in der Kommandozeile:
 		     ..* Rscript microarray01.R Pfad/zu/CEL_files 
 	
