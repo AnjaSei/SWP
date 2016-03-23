@@ -1,8 +1,8 @@
 
 ###1. File list
 
-... microarray01.R    enthaelt den Quellcode
-... CEL_Files/        Ordner, der die zu analysierenden .CEL Files enthaelt  
+* microarray01.R    enthaelt den Quellcode
+* CEL_Files/        Ordner, der die zu analysierenden .CEL Files enthaelt  
 
 ###2. Ausfuehren
 
@@ -22,12 +22,12 @@ Ausfuehren in der Kommandozeile:
 
 ###4. Bemerkungen
 
-Installiere, wenn noch nicht vorhanden, die folgenden packages mit Bioconducter:
-source("http://bioconductor.org/biocLite.R")
-biocLite("affy")
-biocLite("hgu133plus2cdf")
-biocLite("hgu133plus2.db")
-biocLite("simpleaffy")
-biocLite("affyPLM")
+Installiere, wenn noch nicht vorhanden, die folgenden packages mit Bioconducter:  
+source("http://bioconductor.org/biocLite.R")  
+biocLite("affy")  
+biocLite("hgu133plus2cdf")  
+biocLite("hgu133plus2.db")  
+biocLite("simpleaffy")  
+biocLite("affyPLM")  
 
 
