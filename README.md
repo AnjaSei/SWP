@@ -14,14 +14,14 @@ Mit einem Parameter:
 * Zum Speichern der Ergebnisse wird im aktuellen Arbeitsverzeichnis der Ordner "output/" angelegt.  
 
 Ausfuehren in der Kommandozeile:  
-	Rscript microarray01.R Pfad/zu/CEL_files 
+    Rscript microarray01.R Pfad/zu/CEL_files 
 	
 Mit zwei Parametern:  	
 * Parameter 1 gibt das Verzeichnis an, das die .CEL Files beeinhaltet.  
 * Parameter 2 enthaelt das Verzeichnis, in welchem die Ergebnisse des Programms gespeichert werden sollen.  
 
 Ausfuehren in der Kommandozeile:  
-	Rscript microarray01.R /Pfad/zu/CEL_files Pfad/zu/output_folder  
+    Rscript microarray01.R /Pfad/zu/CEL_files Pfad/zu/output_folder  
 
 
 ###4. Bemerkungen
