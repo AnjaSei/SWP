@@ -4,11 +4,13 @@
 #biocLite("hgu133plus2cdf")
 #biocLite("hgu133plus2.db")
 #biocLite("simpleaffy")
+#biocLite("affyPLM")
 #lade Bibliotheken
 library(affy)
 library(hgu133plus2cdf)       #load package containing an environment representing the HG-U133_Plus_2.cdf file
 library(hgu133plus2.db)       #fuer Genannotation
 library(simpleaffy)           #fuer QC-Plot
+library(affyPLM)              #fuer probe-level model image
 
 ##1. Lese .CEL-Files
 data<- ReadAffy(celfile.path = "/home/anja/Dokumente/Studium/6.Semester/Projektmanagement_im_Softwarebereich/Gruppe_1/input/ND_Group1_133Plus_2")
