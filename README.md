@@ -26,7 +26,7 @@ Ausfuehren in der Kommandozeile:
     Rscript microarray01.R /Pfad/zu/CEL_files Pfad/zu/output_folder  
 
 
-###4. Bemerkungen
+###3. Bemerkungen
 
 Installiere, wenn noch nicht vorhanden, die folgenden packages mit Bioconducter:  
 source("http://bioconductor.org/biocLite.R")  
@@ -35,5 +35,7 @@ biocLite("hgu133plus2cdf")
 biocLite("hgu133plus2.db")  
 biocLite("simpleaffy")  
 biocLite("affyPLM")  
+
+Zum Ausfuehren des Programmes ist die (derzeit) aktuellste R-Version 3.2.4 erforderlich.
 
 
