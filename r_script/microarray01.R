@@ -1,4 +1,29 @@
 #!/usr/bin/env Rscript
+#############################################################
+##
+## file: microarray01.R
+##
+## created by: Rascha B., Sevcan G., Anja S.
+## created on: March 17, 2016
+##
+## Description: quality control and data analysis of
+##              affymetrix microarray data
+##     
+## input:   folder with .CEL files
+##          path to output folder (optional)
+##
+## output:  affyids_genenames.txt
+##          rma_data.txt
+##          boxplots.jpeg
+##          histograms_raw_vs_normalized.jpeg
+##          raw_microarray_image.jpeg
+##          plm_microarray_image.jpeg
+##          histogramme.jpeg
+##          histogramme_all_pm_mm.jpeg
+##          RNA_degradation.jpeg
+##          qc_plot.jpeg
+##          
+##############################################################
 
 #source("http://bioconductor.org/biocLite.R")
 #Bioconductor downloads and installs the package
@@ -7,89 +32,95 @@
 #biocLite("hgu133plus2.db")
 #biocLite("simpleaffy")
 #biocLite("affyPLM")
-#lade Bibliotheken
-library(affy)
-library(hgu133plus2cdf)       #load package containing an environment representing the HG-U133_Plus_2.cdf file
-library(hgu133plus2.db)       #fuer Genannotation
-library(simpleaffy)           #fuer Qualitaetsanalyse
-library(affyPLM)              #fuer probe-level model image
+#load libraries
+library(affy)                 #methods for Affymetriy Oligonucleotide Arrays
+library(hgu133plus2cdf)       #environment representing the HG-U133_Plus_2.cdf file
+library(hgu133plus2.db)       #for gene annotation
+library(simpleaffy)           #for quality control
+library(affyPLM)              #for probe-level model image
 
-#speichere Kommandozeilenargumente
+
+#saves command line arguments
 args = commandArgs(trailingOnly=TRUE)
-# pruefe Anzahl der uebergebenen Argumente
+#check number of command line arguments
 if (length(args)!=1 && length(args)!=2) {
   stop("Gebe Pfad zu .Cel files und ggf. Ausgabeordner an!")
 }
 if (length(args)==1) {
-  # setze Standard output Ordner
+  # set output folder
   args[2] = "output"
 }
-#ggf. Ausgabeordner erstellen
+#create output folder
 if (!dir.exists(args[2])){
   dir.create(path=args[2], recursive=TRUE)
 }
 
-##1. Lese .CEL-Files
+##read .CEL files
 data<- ReadAffy(celfile.path=args[1])
 
-##2. AffIDs Genen zuordnen
+##select genename for each affyid
 affyids<-featureNames(data)
 mapping <- select(hgu133plus2.db, affyids, "GENENAME")
-write.table(mapping, row.names=FALSE, quote=FALSE, sep="\t", file=paste0(args[2],"/genenames.txt"))
+write.table(mapping, row.names=FALSE, quote=FALSE, sep="\t", file=paste0(args[2],"/affyids_genenames.txt"))
 
-##3. RMA-Normalisierung
+##RMA-Normalization
 rma_data<-rma(data)
 write.exprs(rma_data, file=paste0(args[2],"/rma_data.txt"))
 
-##Ueberpruefe Normalisierung mit:
-##3a) Boxplots
+##Check RMA-Normalization with:
+##a) boxplots
+#compare raw data and normalized data
 jpeg(filename=paste0(args[2],"/boxplots.jpeg"), width=800, height=800, quality=100)
 par(mfrow=c(1,2))
-par(las=2)
-boxplot(data, main="raw data", cex.axis=0.3)
-boxplot(exprs(rma_data), main="RMA normalisierte Daten", cex.axis=0.3)
+boxplot(data, main="raw data", cex.axis=0.3, col="red", las=2)
+boxplot(exprs(rma_data), main="RMA normalized data", cex.axis=0.3, col="green", las=2)
 dev.off()
 
-##3b) Density diagrams
-#Vergleich raw data und normalisierter Daten
-jpeg(filename=paste0(args[2],"/histogramme_raw_vs_normalisiert.jpeg"), width=800, height=600, quality=100)
+##b) density diagrams
+#compare raw data and normalized data
+jpeg(filename=paste0(args[2],"/histograms_raw_vs_normalized.jpeg"), width=800, height=600, quality=100)
 par(mfrow=c(1,2))
-hist(data, col=1:9, lty=1)   #density plots of log intensities (AffyBatch). 
+hist(data, main="raw data", col=1:9, lty=1)   #density plots of log intensities (AffyBatch). 
 legend("topright", sampleNames(data), col=1:9, lty=rep(1,9), cex=0.7)
-plotDensity(exprs(rma_data), lty=1, col =1:9)
+plotDensity(exprs(rma_data), main="RMA normalized data", lty=1, col =1:9)
 legend("topright", sampleNames(data), col=1:9, lty=rep(1,9), cex=0.7)
 dev.off()
 
-######Qualitaetskontrolle##########
+######quality control##########
 
-##4. Microarraybilder
+##microarray images 
 for (i in 1:length(data)){
-  jpeg(filename=paste0(args[2],"/",sampleNames(data)[i],".jpeg"), width=2000, height=2000, quality=100)
+  #image raw data
+  jpeg(filename=paste0(args[2],"/raw_", sampleNames(data)[i],".jpeg"), width=2000, height=2000, quality=100)
   image(data[,i])
+  dev.off()
+  #PLM image
+  jpeg(filename=paste0(args[2],"/plm_", sampleNames(data)[i],".jpeg"), width=2000, height=2000, quality=100)
+  image(fitPLM(data, background.method="RMA.2", normalize.method="quantile"), which=i )    
   dev.off()
 }
 
-##5. Histogramme
+##histogram
 jpeg(filename=paste0(args[2],"/histogramme.jpeg"), width=800, height=600, quality=100)
 par(mfrow=c(1,2))
-hist(log2(exprs(data)), main="Signalintensitaet raw data")
-hist(exprs(rma_data), main="Signalintensitaet RMA-normalisierte Daten")
+hist(log2(exprs(data)), main="signal intensity of raw data")
+hist(exprs(rma_data), main="signal intensity of RMA-normalized data")
 dev.off()
 
-#betrachte Signalverteilung pm, mm und alle
+#signal intensity distribution of pm, mm and both from raw data
 jpeg(filename=paste0(args[2],"/histogramme_all_pm_mm.jpeg"), width=800, height=600, quality=100)
 par(mfrow=c(2,2))
-hist(data, which=c("both"), main="Sinalintensitaet (pm und mm)", ylim=c(0,1.2))
-hist(data, which=c("pm"), main ="Signalintensitaet pm", ylim=c(0,1.2))
-hist(data, which=c("mm"), main ="Signalintensitaet mm", ylim=c(0,1.2))
+hist(data, which=c("both"), main="signal intensity (pm and mm)", ylim=c(0,1.2))
+hist(data, which=c("pm"), main ="signal intensity pm", ylim=c(0,1.2))
+hist(data, which=c("mm"), main ="signal intensity mm", ylim=c(0,1.2))
 dev.off()
 
-##6. RNA-Degradationsplot
+##RNA degradation plot
 jpeg(filename=paste0(args[2],"/RNA_degradation.jpeg"), width=800, height=800, quality=100)
 deg_data<-AffyRNAdeg(data)
 plotAffyRNAdeg(deg_data, col=1:9)
 legend("topleft", sampleNames(data), col=1:9, lty=rep(1,9), cex=1)
-#summaryAffyRNAdeg(deg_data)   #slope<5 -> gut
+#summaryAffyRNAdeg(deg_data)   #slope<5 -> good
 dev.off()
 
 ##7. QC-Plot
@@ -97,7 +128,4 @@ jpeg(filename=paste0(args[2],"/qc_plot.jpeg"), width=800, height=800, quality=10
 qc_data<-qc(data)
 plot(qc_data)
 dev.off()
-
-
-
 
