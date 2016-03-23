@@ -6,12 +6,13 @@
 #biocLite("hgu133plus2cdf")
 #biocLite("hgu133plus2.db")
 #biocLite("simpleaffy")
+#biocLite("affyPLM")
 #lade Bibliotheken
 library(affy)
 library(hgu133plus2cdf)       #load package containing an environment representing the HG-U133_Plus_2.cdf file
 library(hgu133plus2.db)       #fuer Genannotation
 library(simpleaffy)           #fuer Qualitaetsanalyse
-library("preprocessCore")
+library(affyPLM)              #fuer probe-level model image
 
 #speichere Kommandozeilenargumente
 args = commandArgs(trailingOnly=TRUE)
