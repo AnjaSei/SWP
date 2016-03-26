@@ -123,9 +123,30 @@ legend("topleft", sampleNames(data), col=1:9, lty=rep(1,9), cex=1)
 #summaryAffyRNAdeg(deg_data)   #slope<5 -> good
 dev.off()
 
-##7. QC-Plot
+##QC-Plot
 jpeg(filename=paste0(args[2],"/qc_plot.jpeg"), width=800, height=800, quality=100)
 qc_data<-qc(data)
 plot(qc_data)
 dev.off()
 
+
+#create the following table with RMA or MAS5 normalized data
+#| PROBEID       | SYMBOL        | CEL.file(1) | CEL.file(2) | ...
+#| ------------- |---------------| ------------| ------------| ...
+#| 1007_s_at     |DDR1 , MIR4640 | 75,13       | 80.10       | ...
+
+my_table<- function(norm_data, outputname){
+  affyids<-rownames(exprs(norm_data));
+  mapping <- select(hgu133plus2.db, keys=affyids, columns="SYMBOL")
+  mapping[is.na(mapping)]<-"NA"
+  table_probeid_symbol<-aggregate(SYMBOL~PROBEID, paste0, collapse=" , ", data=mapping)
+  summary<-cbind(table_probeid_symbol, exprs(norm_data))
+  write.table(summary, row.names=FALSE, file=paste0(args[2], "/", outputname), sep="\t", dec=",")
+}
+
+##RMA
+my_table(rma_data, "table_rma.txt")
+
+##MAS 5.0 
+mas5_data<-mas5(data, sc=150)
+my_table(mas5_data, "table_mas5.txt" )
