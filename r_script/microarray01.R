@@ -22,6 +22,8 @@
 ##          histogramme_all_pm_mm.jpeg
 ##          RNA_degradation.jpeg
 ##          qc_plot.jpeg
+##          table_rma.txt
+##          table_mas5.txt
 ##          
 ##############################################################
 
