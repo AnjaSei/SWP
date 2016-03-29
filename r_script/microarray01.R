@@ -152,3 +152,21 @@ my_table(rma_data, "table_rma.txt")
 ##MAS 5.0 
 mas5_data<-mas5(data, sc=150)
 my_table(mas5_data, "table_mas5.txt" )
+
+##heatmap raw data
+for (i in 1:length(data)){
+  jpeg(filename=paste0(args[2],"/heatmap_raw_data_", sampleNames(data)[i],".jpeg"), width=2000, height=2000, quality=100)
+  image(data[,i], col=heat.colors(100))
+  dev.off()
+}
+
+#topographical image raw data
+for (i in 1:length(data)){
+  jpeg(filename=paste0(args[2],"/topographical_image_raw_data_", sampleNames(data)[i],".jpeg"), width=2000, height=2000, quality=100)
+  image(data[,i], col=topo.colors(100))
+  dev.off()
+}
+
+
+
+
