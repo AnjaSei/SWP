@@ -167,6 +167,50 @@ for (i in 1:length(data)){
   dev.off()
 }
 
+#make scatterplots
+my_Scatterplot <- function(x, name){
+  for (i in 1:(length(data)-1)){
+    for (j in (i+1):(length(data))){
+      jpeg(filename=paste0(args[2], "/scatterplots/",name,"/", name, "_scatterplot_", sampleNames(data)[i], "_", sampleNames(data)[j], ".jpeg"), width=800, height=800, quality=100)
+      plot(x[,i+2], x[,j+2], xlab=sampleNames(data)[i], ylab=sampleNames(data)[j], main="Intensitaetsvergleich" )
+      dev.off()
+    }
+  }
+}
+
+#add aditional columns (median, mean...)
+my_full_dataset<- function(x, gesund, krank, name){
+  g_median<-apply(gesund, MARGIN=1, FUN=median)
+  k_median<-apply(krank, MARGIN=1, FUN=median)
+  g_mean<-apply(gesund, MARGIN=1, FUN=mean)
+  k_mean<-apply(krank, MARGIN=1, FUN=mean)
+  g_sd<-apply(gesund, MARGIN=1, FUN=sd)
+  k_sd<-apply(krank, MARGIN=1, FUN=sd)
+  g_min<-apply(gesund, MARGIN=1, FUN=min)
+  k_min<-apply(krank, MARGIN=1, FUN=min)
+  g_max<-apply(gesund, MARGIN=1, FUN=max)
+  k_max<-apply(krank, MARGIN=1, FUN=max)  
+  
+  ##add columns
+  x<-cbind(x,g_median, k_median, g_mean, k_mean, g_sd, k_sd, g_min, k_min, g_max, k_max)
+  write.table(x, row.names=FALSE, file=paste0(args[2], "/", name,"_full_table.txt"), sep="\t", dec=",")
+
+}
+
+
+x_rma<- read.table(file=paste0(args[2], "/","table_rma.txt"), header=TRUE, dec=",")
+my_Scatterplot(x_rma, "rma")
+gesund<- cbind(x_rma$ND_51_CD14_133Plus_2.CEL, x_rma$ND_52_CD14_133Plus_2.CEL, x_rma$ND_53_CD14_133Plus_2.CEL);
+krank<- cbind(x_rma$ND_11_CD14_IFNa2a_90_133Plus_2.CEL, x_rma$ND_13_CD14_IFNa2a_90_133Plus_2.CEL, x_rma$ND_5_CD14_IFNa2a_90_133Plus_2.CEL, x_rma$ND_6_CD14_IFNa2a_90_133Plus_2.CEL, x_rma$ND_7_CD14_IFNa2a_90_133Plus_2.CEL, x_rma$ND_8_CD14_IFNa2a_90_133Plus_2.CEL)
+my_full_dataset(x_rma, gesund, krank, "rma")
+t.test(gesund, krank)
+
+x_mas5<- read.table(file=paste0(args[2], "/","table_mas5.txt"), header=TRUE, dec=",")
+my_Scatterplot(x_mas5, "mas5")
+gesund<- cbind(x_mas5$ND_51_CD14_133Plus_2.CEL, x_mas5$ND_52_CD14_133Plus_2.CEL, x_mas5$ND_53_CD14_133Plus_2.CEL);
+krank<- cbind(x_mas5$ND_11_CD14_IFNa2a_90_133Plus_2.CEL, x_mas5$ND_13_CD14_IFNa2a_90_133Plus_2.CEL, x_mas5$ND_5_CD14_IFNa2a_90_133Plus_2.CEL, x_mas5$ND_6_CD14_IFNa2a_90_133Plus_2.CEL, x_mas5$ND_7_CD14_IFNa2a_90_133Plus_2.CEL, x_mas5$ND_8_CD14_IFNa2a_90_133Plus_2.CEL)
+my_full_dataset(x_mas5, gesund, krank, "mas5")
+t.test(gesund, krank)
 
 
 
