@@ -55,6 +55,8 @@ if (length(args)==1) {
 #create output folder
 if (!dir.exists(args[2])){
   dir.create(path=args[2], recursive=TRUE)
+  dir.create(path=paste0(args[2],"/scatterplots/rma/"), recursive=TRUE)
+  dir.create(path=paste0(args[2],"/scatterplots/mas5/"), recursive=TRUE)
 }
 
 ##read .CEL files
@@ -138,20 +140,25 @@ dev.off()
 #| 1007_s_at     |DDR1 , MIR4640 | 75,13       | 80.10       | ...
 
 my_table<- function(norm_data, outputname){
-  affyids<-rownames(exprs(norm_data));
+  affyids<-rownames(norm_data);
   mapping <- select(hgu133plus2.db, keys=affyids, columns="SYMBOL")
   mapping[is.na(mapping)]<-"NA"
-  table_probeid_symbol<-aggregate(SYMBOL~PROBEID, paste0, collapse=" , ", data=mapping)
-  summary<-cbind(table_probeid_symbol, exprs(norm_data))
+  mapping<-mapping[which(!duplicated(mapping$PROBEID)),] #nur erstes Gensymbol einer Affyid nehmen
+  MEAN_ALL<-apply(norm_data, MARGIN=1, FUN=mean)
+  temp<-cbind(mapping, norm_data, MEAN_ALL)
+  summary<-temp[temp$SYMBOL!="NA",]  #loesche Eintraege mit unbekannten Gensymbol
+  summary <- summary[order(summary$SYMBOL, -abs(summary$MEAN_ALL) ), ] #sort by SYMBOL and reverse of abs(value)
+  summary<-summary[which(!duplicated(summary$SYMBOL)), ]    
   write.table(summary, row.names=FALSE, file=paste0(args[2], "/", outputname), sep="\t", dec=",")
 }
 
-##RMA
-my_table(rma_data, "table_rma.txt")
 
 ##MAS 5.0 
 mas5_data<-mas5(data, sc=150)
-my_table(mas5_data, "table_mas5.txt" )
+my_table(log2(exprs(mas5_data)), "table_mas5.txt" )
+##RMA
+my_table(exprs(rma_data), "table_rma.txt")
+
 
 ##heatmap raw data
 for (i in 1:length(data)){
