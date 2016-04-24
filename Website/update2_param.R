@@ -39,8 +39,8 @@ library(gtools)
 library(optparse)
 
 option_list <- list(
-   make_option("--input", action="store", help="Folder with CEL. files"),
-   make_option("--output", action="store", help="Resultfolder"),
+   make_option("--input", action="store", help="Folder with CEL. files (mandatory)"),
+   make_option("--output", action="store", help="Result folder (voluntary)"),
 
    make_option("--all", action="store_true", default=FALSE, help="Run full R script"), 
    make_option("--boxplot", action="store_true", default=FALSE, help="Boxplots"),
@@ -54,7 +54,6 @@ option_list <- list(
    make_option("--table", action="store_true", default=FALSE, help="Tables with RMA and MAS5 normalized data including max, min, mean, sd, p-value, SLR, FC"),
    make_option("--scatter", action="store_true", default=FALSE, help="scatterplots"),
    make_option("--topgenes", action="store", type="integer", help="Venn diagrams of top differentially expressed genes")
-
 
 )
 
