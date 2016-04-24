@@ -70,10 +70,10 @@ biocLite("hgu133plus2.db")
 biocLite("simpleaffy")  
 biocLite("affyPLM")  
 
-CRAN packages
-install.packages("VennDiagram")
-install.packages("gtools")
-install.packages("optparse")
+CRAN packages  
+install.packages("VennDiagram")  
+install.packages("gtools")  
+install.packages("optparse")  
 
 
 Zum Ausfuehren des Programmes ist die (derzeit) aktuellste R-Version 3.2.4 erforderlich.
