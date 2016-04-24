@@ -1,0 +1,71 @@
+ <?php
+ //mit isset wird geprüft ob einer Variablen bereits 
+  //ein Wert zugewiesen wurde
+$commando="";
+if (isset($_POST['run_R'])){
+
+      if (isset($_POST['all'])){
+          //echo "Alles wird erzeeeugt"."<br />";
+	$commando=" --all";
+      }
+      else{
+      	if (isset($_POST['boxplot'])){
+         // echo "Boxplot wird erzeugt"."<br />";
+		$commando.=" --boxplot ";
+		
+      	}
+      	if (isset($_POST['hist'])){
+        //  echo "hist wird erzeugt";
+		$commando.=" --hist ";
+      	}
+	if (isset($_POST['microarray_img'])){
+        //  echo "micro wird erzeugt"."<br />";
+		$commando.=" --microarray_img ";
+		
+      	}
+      	if (isset($_POST['plm'])){
+        //  echo "plm wird erzeugt";
+		$commando.=" --plm ";
+      	}
+
+	if (isset($_POST['heatmap'])){
+         // echo "Heatmap wird erzeugt"."<br />";
+		$commando.=" --heatmap ";
+		
+      	}
+
+      	if (isset($_POST['topo'])){
+        //  echo "Topo wird erzeugt";
+		$commando.=" --topo ";
+      	}
+
+	if (isset($_POST['rnadeg'])){
+        //  echo "RNADEG wird erzeugt"."<br />";
+		$commando.=" --rnadeg ";
+		
+      	}
+      	if (isset($_POST['qcplot'])){
+        //  echo "qcplot wird erzeugt";
+		$commando.=" --qcplot ";
+      	}
+	if (isset($_POST['table'])){
+       //   echo "table wird erzeugt";
+		$commando.=" --table ";
+      	}
+	if (isset($_POST['scatter'])){
+        //  echo "scatter wird erzeugt";
+		$commando.=" --scatter ";
+      	}
+	if (isset($_POST['topgenes'])){
+        //  echo "topgenes wird erzeugt";
+		$commando.=" --topgenes ";
+      	}
+
+    }
+
+
+}
+
+exec("Rscript update2_param.R --input uploads ".$commando);
+
+?>

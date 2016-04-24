@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Softwarepraktikum: Gruppe1</title>
+	<link rel="stylesheet" type="text/css" href="css/my_style.css" />
+	
+	<div id="topmenue">Softwarepraktikum GRUPPE1</div>
+</head>
+
+<body>
+	<br/><br/><br/>
+	<form method="get"> 
+		<label for="row_number">Wie viele Zeilen sollen ausgeben werden? </label>
+		<input id="row_number" name=row_number type="number" value="10"/><br/>
+		<input type="submit" name="submit" value="Submit">
+
+	 </form>
+
+<?php
+//set default sorting criterion 
+if(!isset($_GET['orderBy'])) {
+     $_GET['orderBy'] = 'SYMBOL_desc';
+
+}
+
+if(substr($_GET['orderBy'], -4, 4)=='desc'){
+	$sql_orderBy=substr($_GET['orderBy'], 0, -5) . ' DESC';
+
+}
+else{
+	$sql_orderBy = $_GET['orderBy'].' ASC ';
+}
+
+
+if (!isset($_GET['row_number'])){
+	$rows = 10;		//default value
+}
+else{
+	$rows=$_GET['row_number'];
+}
+
+//database connection details
+$connect = mysql_connect('localhost','anja', "123") or die('Could not connect to MySQL: '. mysql_error());
+
+//database name
+mysql_select_db('anja', $connect);
+
+$content = '';
+
+$sql = "SELECT * FROM rma ORDER BY $sql_orderBy"." LIMIT ".$rows;
+echo $sql;
+$result = mysql_query($sql);
+while($row = mysql_fetch_array($result)) {
+	$content.='<tr>';
+	
+	for ($i = 0; $i <mysql_num_fields($result); $i++) {
+  		$content.='<td>' . htmlentities($row[$i]) . '</td>';
+
+	}
+	$content.='</tr>';
+	
+}
+ 
+
+
+print '<table cellpadding="3" cellspacing="1" border="1">';
+print '<tr>';
+
+for ($i = 0; $i <mysql_num_fields($result); $i++) {
+	print '<th scope="col">';
+	if($_GET['orderBy'] == mysql_field_name($result, $i)){ 
+		print '<a href="sort_table.php?orderBy='.mysql_field_name($result, $i).'_desc&row_number='.$rows.'">'.mysql_field_name($result, $i).'<img src="../images/arrowUp.gif" " /></a>'; 
+	}
+	elseif($_GET['orderBy'] == mysql_field_name($result, $i).'_desc'){
+		 print '<a href="sort_table.php?orderBy='.mysql_field_name($result, $i).'&row_number='.$rows.'">'.mysql_field_name($result, $i).'<img src="../images/arrowDown.gif" " /></a>'; 
+	}
+	else{ 
+		print '<a href="sort_table.php?orderBy='.mysql_field_name($result, $i).'&row_number='.$rows.'">'.mysql_field_name($result, $i).'</a>'; 
+	}
+	print '</th>';
+
+
+}
+
+print '</tr>';
+print $content;
+print '</table>';
+
+?>
+</body>
+</html>
