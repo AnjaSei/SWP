@@ -1,6 +1,0 @@
-<h1 class="welcome">CSS3 Arrow Buttons</h1>
-
-<div class="button-bar">
-  <a href="#" class="button prev">Previous</a>
-  <a href="#" class="button next">Next</a>
-</div>
