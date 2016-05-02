@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 #############################################################
 ##
-## file: microarray01.R
+## file: microarray_analysis.R
 ##
 ## created by: Rascha B., Sevcan G., Anja S.
 ## created on: March 17, 2016
