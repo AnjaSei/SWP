@@ -4,7 +4,7 @@ head{
 	background: white;
 }
 
-#bild{
+#image{
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
@@ -23,25 +23,6 @@ head{
 body {
 	background: white;
 }
-/*ungenutzt*/
-#header {
-	position: relative;
-	margin-top: 5em;
-	margin-left: 15em;
-	background: red;
-}
-
-
-
-
-#menue {
-	position: ;
-	width: 10em;
-	float: left;
-	margin-top: 5em;
-	margin-left: 1em;
-	background-color: #6495ed;
-}
 
 #content {
 	position: relative;
@@ -49,9 +30,123 @@ body {
 	margin-right: auto;
 	margin-top: 3em;
 	text-align: center;
+	
 }
-/*ungenutzt*/
-#footer {
-	clear: left;
-	padding-left: 14em;
+
+a { 
+	color: black; 
+	/*text-decoration:none; */
 }
+
+
+table, th, td {
+    	border-collapse: collapse;
+    	border: 1px solid black;
+}
+th {
+    	background-color: #CED8F6;
+}
+
+
+
+fieldset { border: 2px solid #5882FA; 
+           
+           background: white; 
+} 
+
+.myButton {
+	-moz-box-shadow: 0px 1px 0px 0px #bee2f9;
+	-webkit-box-shadow: 0px 1px 0px 0px #bee2f9;
+	box-shadow: 0px 1px 0px 0px #bee2f9;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #E0E6F8), color-stop(1,#A9BCF5));
+	background:-moz-linear-gradient(top, #E0E6F8, #A9BCF5);
+	background:-webkit-linear-gradient(top,  #E0E6F8, #A9BCF5);
+	background:-o-linear-gradient(top,  #E0E6F8, #A9BCF5);
+	background:-ms-linear-gradient(top,  #E0E6F8, #A9BCF5);
+	background:linear-gradient(to bottom,  #E0E6F8, #A9BCF5);
+        background: linear-gradient(to bottom,  #E0E6F8, #A9BCF5);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#E0E6F8', endColorstr='#A9BCF5',GradientType=0);
+	background-color:#E0E6F8;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:normal;
+	font-size:16px;
+	padding:3px 20px;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #7cacde;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #468ccf), color-stop(1, #63b8ee));
+	background:-moz-linear-gradient(top, #CECEF6, #819FF7);
+	background:-webkit-linear-gradient(top, #CECEF6, #819FF7);
+	background:-o-linear-gradient(top, #CECEF6, #819FF7);
+	background:-ms-linear-gradient(top, #CECEF6, #819FF7);
+	background:linear-gradient(to bottom, #CECEF6, #819FF7);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#CECEF6', endColorstr=' #819FF7',GradientType=0);
+	background-color: #CECEF6;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
+/* slide box for search/filter options*/
+.slideThree {
+  	width: 80px;
+  	height: 26px;
+	  background: #CECEF6;
+	  margin: 0px 0px 0px absolute;
+	  position: absolute;
+	  border-radius: 50px;
+	  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+}
+.slideThree:after {
+	  content: 'OFF';
+	  color: #000;
+	  position: absolute;
+	  right: 10px;
+	  z-index: 0;
+	  font: 12px/26px normal;
+	  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
+}
+.slideThree:before {
+	  content: 'ON';
+	  color: black;
+	  position: absolute;
+	  left: 10px;
+	  z-index: 0;
+	  font: 12px/26px normal;
+}
+.slideThree label {
+	  display: block;
+	  width: 34px;
+	  height: 20px;
+	  cursor: pointer;
+	  position: absolute;
+	  top: 3px;
+	  left: 3px;
+	  z-index: 1;
+	  background: #fcfff4;
+	  background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	  background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	  border-radius: 50px;
+	  -webkit-transition: all 0.4s ease;
+	  transition: all 0.4s ease;
+	  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.slideThree input[type=checkbox] {
+  	visibility: hidden;
+}
+.slideThree input[type=checkbox]:checked + label {
+  	left: 43px;
+}
+
+/* end slide box */
+
