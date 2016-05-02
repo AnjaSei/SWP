@@ -33,9 +33,9 @@ library(affyPLM)              #for probe-level model image
 #install.packages("VennDiagram")
 #install.packages("gtools")
 #install.packages("optparse")
-library(VennDiagram)
-library(gtools)
-library(optparse)
+library(VennDiagram)	      #for venn diagrams
+library(gtools)		      #to calculate fold change 
+library(optparse)	      #to parse command line options
 
 option_list <- list(
    make_option("--input", action="store", help="Folder with CEL. files (mandatory)"),
