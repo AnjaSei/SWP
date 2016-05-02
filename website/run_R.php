@@ -100,12 +100,12 @@ if (isset($_POST['run_R'])){
 //target folder to save the R Script results
 $output_folder="output";
 //run the R Script
-//exec("Rscript microarray_analysis.R --input uploads --output $output_folder ".$commando);
+exec("Rscript microarray_analysis.R --input uploads --output $output_folder ".$commando);
 
 
 //user chose RScript option "signal intensity tables": tables (rma and mas5) in .csv format were created
 //upload these tables to mysql data base
-/*if (isset($_POST['table'])){
+if (isset($_POST['table'])){
 		
 	//create and fill tables in the data base 
 
@@ -186,7 +186,7 @@ ND_11_CD14_IFNa2a_90_133Plus_2_pma VARCHAR(1) NOT NULL, ND_13_CD14_IFNa2a_90_133
 	
 	
 }
-*/
+
 
 //traverse the R Script output directory (inclusive subfolders) and view the images with the blueimp gallery
 function listFolderFiles($folder){
@@ -219,11 +219,6 @@ function listFolderFiles($folder){
 
 ?>
 	
-
-
-
-
-
 
 <div id="links">
 <?php
