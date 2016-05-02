@@ -175,7 +175,8 @@
 
 .dropzone {
   min-height: 150px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
+  /*changed old: 2px solid rgba(0, 0, 0, 0.3) */
+  border: 2px solid #5882FA;
   background: white;
   padding: 20px 20px; }
   .dropzone.dz-clickable {
@@ -205,8 +206,12 @@
         opacity: 1; }
     .dropzone .dz-preview.dz-file-preview .dz-image {
       border-radius: 20px;
+    /*changed old:
       background: #999;
       background: linear-gradient(to bottom, #eee, #ddd); }
+    */
+      background: #5882FA;
+      background: linear-gradient(to bottom,  #E0E6F8, #A9BCF5); }
     .dropzone .dz-preview.dz-file-preview .dz-details {
       opacity: 1; }
     .dropzone .dz-preview.dz-image-preview {
