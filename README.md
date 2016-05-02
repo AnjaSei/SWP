@@ -1,7 +1,7 @@
 
 ###1. File list
 
-* microarray01.R   enthaelt den Quellcode
+* microarray_analysis.R   enthaelt den Quellcode
 * CEL_Files/   Ordner, der die zu analysierenden .CEL Files beeinhaltet
 
 ###2. Ausfuehren in der Kommandozeile:  
