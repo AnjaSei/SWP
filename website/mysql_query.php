@@ -116,7 +116,7 @@
 
 	//build ORDER BY clause
 	if(substr($_GET['orderBy'], -4, 4)=='desc'){
-		if(substr($_GET['orderBy'], 0, 3) === 'SLR' | substr($_GET['orderBy'], 0, 2) === 'FC'){
+		if(substr($_GET['orderBy'], 0, -5) === 'SLR' | substr($_GET['orderBy'], 0, -5) === 'FC'){
 			$sql.=" ORDER BY "."abs(".substr($_GET["orderBy"], 0, -5) . ") DESC";
 		}
 		else{
