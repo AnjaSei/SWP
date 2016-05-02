@@ -6,7 +6,7 @@
 
 ###2. Ausfuehren in der Kommandozeile:  
 
-    Rscript microarray01.R [options] 
+    Rscript microarray_analysis.R [options] 
 
 
 Options:
