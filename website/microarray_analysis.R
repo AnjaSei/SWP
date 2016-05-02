@@ -12,7 +12,6 @@
 ## input:   folder with .CEL files
 ##          path to output folder (optional)
 ##
-## output:  description follows...
 ##          
 ##############################################################
 
