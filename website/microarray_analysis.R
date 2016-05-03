@@ -166,7 +166,7 @@ top_genes<-function(rma_table, mas5_table, top_number){
   mas5_top<-mas5_top$SYMBOL[1:top_number]
   top<-cbind(rma_top, mas5_top)
   
-  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n p_value SLR FC"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_123", colnames(rma_table)[i],".png"), imagetype="png")
+  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n p_value SLR FC"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_p_value_SLR_FC.png"), imagetype="png")
   
   #132
   rma_top<-rma_table[order(abs(rma_table$p_value), -abs(rma_table$FC), -abs(rma_table$SLR)),]
@@ -176,7 +176,7 @@ top_genes<-function(rma_table, mas5_table, top_number){
   mas5_top<-mas5_top$SYMBOL[1:top_number]
   top<-cbind(rma_top, mas5_top)
   
-  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n p_value FC SLR"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_132", colnames(rma_table)[i],".png"), imagetype="png")
+  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n p_value FC SLR"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_p_value_FC_SLR.png"), imagetype="png")
   
   #213
   rma_top<-rma_table[order(-abs(rma_table$SLR), abs(rma_table$p_value), -abs(rma_table$FC)),]
@@ -186,7 +186,7 @@ top_genes<-function(rma_table, mas5_table, top_number){
   mas5_top<-mas5_top$SYMBOL[1:top_number]
   top<-cbind(rma_top, mas5_top)
   
-  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n SLR p_value FC"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_213", colnames(rma_table)[i],".png"), imagetype="png")
+  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n SLR p_value FC"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_SLR_p_value_FC.png"), imagetype="png")
   
   #231
   rma_top<-rma_table[order(-abs(rma_table$SLR), -abs(rma_table$FC), abs(rma_table$p_value)),]
@@ -196,7 +196,7 @@ top_genes<-function(rma_table, mas5_table, top_number){
   mas5_top<-mas5_top$SYMBOL[1:top_number]
   top<-cbind(rma_top, mas5_top)
   
-  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n SLR FC p_value"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_231", colnames(rma_table)[i],".png"), imagetype="png")
+  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n SLR FC p_value"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_SLR_FC_p_value.png"), imagetype="png")
   
   
   #312
@@ -207,7 +207,7 @@ top_genes<-function(rma_table, mas5_table, top_number){
   mas5_top<-mas5_top$SYMBOL[1:top_number]
   top<-cbind(rma_top, mas5_top)
   
-  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n FC p_value SLR"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_312", colnames(rma_table)[i],".png"), imagetype="png")
+  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n FC p_value SLR"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_FC_p_value_SLR.png"), imagetype="png")
   
   #321
   rma_top<-rma_table[order(-abs(rma_table$FC), -abs(rma_table$SLR), abs(rma_table$p_value)),]
@@ -217,8 +217,8 @@ top_genes<-function(rma_table, mas5_table, top_number){
   mas5_top<-mas5_top$SYMBOL[1:top_number]
   top<-cbind(rma_top, mas5_top)
   
-  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n FC SLR p_value"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_321", colnames(rma_table)[i],".png"), imagetype="png")
-}
+  venn.diagram(list("RMA"=top[,1], "MAS5"=top[,2]), main=paste0("Overlap of differentially expressed genes\n FC SLR p_value"),main.cex=2, cat.cex=1.5, cat.pos=c(0,0), fill=c("darkgreen", "blue"), cex=1.5, filename=paste0(output,"/venn_diagrams/venn_diagram_FC_SLR_p_value.png"), imagetype="png")
+  }
 
 #######################################################################
 
