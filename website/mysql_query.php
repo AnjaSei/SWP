@@ -35,40 +35,25 @@
  	<a href="index.php" style="float: left" class="myButton">Neue Anfrage</a>
 	<?php
 	//set default row number
-	if (!isset($_GET['row_number'])){
-		$_GET['row_number'] = 100;		
-	}
+	$_GET['row_number'] = isset($_GET['row_number']) ? $_GET['row_number'] : 100; 
 
 	//set default table name
-	if (!isset($_GET['table_name'])){
-		$_GET['table_name'] = "rma";		
-	}
+	$_GET['table_name'] = isset($_GET['table_name']) ? $_GET['table_name'] : "rma";
 
 	//set default sorting criterion 
-	if(!isset($_GET['orderBy'])) {
-	     $_GET['orderBy'] = 'SYMBOL';
-	}
+	$_GET['orderBy'] = isset($_GET['orderBy']) ? $_GET['orderBy'] : "SYMBOL";
 
 	//initialize search field
-	if (!isset($_GET['search'])){
-		$_GET['search']="";		
-	}
+	$_GET['search'] = isset($_GET['search']) ? $_GET['search'] : "";
 
 	//initialize filter column
-	if (!isset($_GET['column'])){
-		$_GET['column']="";		
-	}
+	$_GET['column'] = isset($_GET['column']) ? $_GET['column'] : "";
 
 	//initialize filter operation
-	if (!isset($_GET['operation'])){
-		$_GET['operation']="";		
-	}
+	$_GET['operation'] = isset($_GET['operation']) ? $_GET['operation'] : "";
 
 	//initialize filter value
-	if (!isset($_GET['number'])){
-		$_GET['number']="";		
-	}
-			
+	$_GET['number'] = isset($_GET['number']) ? $_GET['number'] : "";	
 	?>
 	
 	<!--export table as .csv/.text file-->
